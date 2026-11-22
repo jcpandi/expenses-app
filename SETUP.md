@@ -23,6 +23,16 @@ php artisan serve
 ```
 Then open http://127.0.0.1:8000 in your browser.
 
+## Signing in
+The first time you open the app it asks you to create your account (name, email,
+password). That page closes once the account exists, so nobody else can sign up.
+After that, the app and its `/api` routes need you to be signed in.
+
+Forgot your password? From the project folder run:
+```
+php artisan app:reset-password you@example.com
+```
+
 ## Run the tests
 ```
 php artisan test
@@ -32,7 +42,8 @@ php artisan test
 - `app/Models/Expense.php`: the expense model and the category list
 - `app/Http/Controllers/ExpenseController.php`: add, list, edit, delete
 - `app/Http/Controllers/SettingController.php`: currency setting
-- `routes/web.php`: the page at `/` and the JSON API under `/api`
+- `routes/web.php`: sign-in routes, the page at `/` and the JSON API under `/api`
+- `app/Http/Controllers/AuthController.php`: sign in, sign out, first-run account setup
 - `resources/views/expenses.blade.php`: the page and its JavaScript
 - `database/migrations/`: the `expenses` and `settings` tables
 

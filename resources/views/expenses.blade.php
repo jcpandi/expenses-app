@@ -72,6 +72,10 @@
     <label for="currency" style="margin:0">Currency</label>
     <select id="currency"></select>
     <button id="exportBtn" title="Download all expenses as CSV">Export CSV</button>
+    <form method="POST" action="{{ route('logout') }}" style="margin:0">
+      @csrf
+      <button type="submit" title="Signed in as {{ auth()->user()->email }}">Sign out</button>
+    </form>
   </div>
 </header>
 
@@ -160,6 +164,7 @@
       },
       body: body === undefined ? undefined : JSON.stringify(body),
     });
+    if (res.status === 401 || res.status === 419) { location.href = '/login'; throw new Error('Signed out'); }
     if (res.status === 204) return null;
     const json = await res.json().catch(() => ({}));
     if (!res.ok) {
