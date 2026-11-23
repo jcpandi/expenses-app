@@ -11,7 +11,7 @@ Your local SQLite data is not copied; the online app starts empty.
    ```
    Then open a new terminal.
 2. Sign in: `wasmer login`
-3. Open `app.yaml` and replace `YOUR-WASMER-USERNAME` with your Wasmer username.
+3. `app.yaml` is set to the Wasmer account `jcpandi` and app `my-expenses-app`; change them if you deploy elsewhere.
 4. Make sure the PHP packages are installed: `composer install --no-dev --optimize-autoloader`
 5. Generate an app key and store it as a secret (it is never written to the repo):
    ```

@@ -1,6 +1,6 @@
-# Wasmer Edge app config. Replace `owner` with your Wasmer username before the first deploy.
+# Wasmer Edge app config (owner = Wasmer account).
 kind: wasmer.io/App.v0
-owner: YOUR-WASMER-USERNAME
+owner: jcpandi
 name: my-expenses-app
 package: .
 
