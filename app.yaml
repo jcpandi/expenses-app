@@ -1,7 +1,7 @@
 # Wasmer Edge app config. Replace `owner` with your Wasmer username before the first deploy.
 kind: wasmer.io/App.v0
 owner: YOUR-WASMER-USERNAME
-name: expenses-app
+name: my-expenses-app
 package: .
 
 # Managed Postgres. Wasmer injects DB_HOST, DB_PORT, DB_NAME, DB_USERNAME, DB_PASSWORD.
