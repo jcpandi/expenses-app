@@ -1,0 +1,38 @@
+# Wasmer Edge app config (owner = Wasmer account).
+kind: wasmer.io/App.v0
+owner: jcpandi
+name: my-expenses-app
+package: .
+
+# Managed Postgres. Wasmer injects DB_HOST, DB_PORT, DB_NAME, DB_USERNAME, DB_PASSWORD.
+capabilities:
+  database:
+    engine: postgres
+locality:
+  regions:
+    - fr-roub1
+
+# Non-secret settings. APP_KEY goes in as a secret (see DEPLOY-WASMER.md), never here.
+env:
+  APP_ENV: production
+  APP_DEBUG: "false"
+  DB_CONNECTION: pgsql
+  DB_SSLMODE: require
+  SESSION_DRIVER: database
+  CACHE_STORE: database
+  QUEUE_CONNECTION: sync
+  LOG_CHANNEL: stderr
+  VIEW_COMPILED_PATH: /tmp
+
+# PHP's built-in server handles one request at a time.
+scaling:
+  mode: single_concurrency
+
+# Create/upgrade the database tables after each deploy.
+jobs:
+  - name: migrate
+    trigger: post-deployment
+    action:
+      execute:
+        command: php
+        cli_args: ["/app/artisan", "migrate", "--force"]
